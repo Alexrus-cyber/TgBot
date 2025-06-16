@@ -36,12 +36,12 @@ async def cmd_start(message: Message):
 
 
 @dp.message(F.text == "Посмотреть текст с картинки")
-async def with_puree(message: types.Message):
+async def with_picture(message: types.Message):
     await message.reply("Жду картинку!")
 
 
 @dp.message(F.text == "Включить уведомления ✔️")
-async def without_puree(message: types.Message):
+async def with_pushes(message: types.Message):
     kb = [
         [KeyboardButton(text="Посмотреть текст с картинки")],
         [KeyboardButton(text="Выключить уведомления ❌")],
@@ -52,7 +52,7 @@ async def without_puree(message: types.Message):
     asyncio.create_task(send_reminders(message.chat.id, True)) 
 
 @dp.message(F.text == "Выключить уведомления ❌")
-async def without_puree(message: types.Message):
+async def without_pushes(message: types.Message):
     kb = [
         [KeyboardButton(text="Посмотреть текст с картинки")],
         [KeyboardButton(text="Включить уведомления ✔️")],
@@ -63,7 +63,7 @@ async def without_puree(message: types.Message):
     asyncio.create_task(send_reminders(message.chat.id, False)) 
 
 @dp.message(F.text == "Перейти в чат")
-async def puree(message: types.Message):
+async def with_chat(message: types.Message):
     kb = [
         [KeyboardButton(text="Вернуться в меню")]
     ]
@@ -71,7 +71,7 @@ async def puree(message: types.Message):
     await message.answer("Вы выбрали опцию Перейти в чат", reply_markup=keyboard)
 
 @dp.message(F.text == "Вернуться в меню")
-async def puree(message: types.Message):
+async def with_menu(message: types.Message):
     kb = [
         [KeyboardButton(text="Посмотреть текст с картинки")],
         [KeyboardButton(text="Включить уведомления ✔️")],
